@@ -1,0 +1,51 @@
+# Secure Network Monitoring & IPS lab (Docker edition)
+#   IDS mode:  docker compose up -d --build
+#   IPS mode:  docker compose -f docker-compose.yml -f docker-compose.ips.yml up -d --build
+name: ips-lab
+
+networks:
+  lab:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
+
+services:
+  victim:                       # SSH + HTTP target (intentionally weak creds)
+    build: ./victim
+    hostname: victim
+    cap_add: [NET_ADMIN]        # needed only for IPS mode (NFQUEUE)
+    networks:
+      lab: { ipv4_address: 172.28.0.10 }
+
+  suricata:                     # shares victim's network namespace => sees all its traffic
+    image: jasonish/suricata:7.0
+    network_mode: "service:victim"
+    cap_add: [NET_ADMIN, NET_RAW, SYS_NICE]
+    volumes:
+      - ./suricata/local.rules:/rules/local.rules:ro
+      - ./suricata/threshold.config:/etc/suricata/threshold.config:ro
+      - ./logs/suricata:/var/log/suricata
+    command: -i eth0 -S /rules/local.rules
+
+  attacker:                     # Kali with nmap + hydra
+    build: ./attacker
+    hostname: attacker
+    networks:
+      lab: { ipv4_address: 172.28.0.50 }
+    volumes:
+      - ./attacker/wordlists:/work:ro
+    command: sleep infinity
+
+  dashboard:                    # live console: tails eve.json + receives firewall syslog
+    build: ./dashboard
+    environment:
+      EVE_PATH: /var/log/suricata/eve.json
+      SUPPRESS_SRC: ""          # comma list of known-good scanners to ignore for incidents
+    volumes:
+      - ./logs/suricata:/var/log/suricata:ro
+    ports:
+      - "8080:8080"
+      - "5514:5514/udp"         # point pfSense/FortiGate remote syslog here (and/or Wazuh :514)
+    networks:
+      lab: { ipv4_address: 172.28.0.20 }

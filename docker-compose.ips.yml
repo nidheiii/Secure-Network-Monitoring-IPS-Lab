@@ -1,0 +1,13 @@
+# Overlay: turns Suricata inline (NFQUEUE) and converts alert -> drop.
+services:
+  victim:
+    environment:
+      MODE: ips
+  suricata:
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        sed -e 's/^alert /drop /' \
+            -e 's/threshold:type both, track by_src, count \([0-9]*\), seconds \([0-9]*\);/detection_filter:track by_src, count \1, seconds \2;/' \
+            /rules/local.rules > /tmp/ips.rules
+        exec /usr/bin/suricata -q 0 -S /tmp/ips.rules
