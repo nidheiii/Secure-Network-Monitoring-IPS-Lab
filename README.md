@@ -63,12 +63,12 @@ Tested and verified via `simulate_cli.py` (see [attack-simulation/detection-metr
 
 | Metric | Target | Measured Result | Status |
 |--------|--------|-----------------|--------|
-| **Reconnaissance Detection Rate (Nmap)** | 90%+ | **10 / 10 (100.0%)** | ✅ PASS |
-| **Brute Force Detection Rate (Hydra)** | 90%+ | **5 / 5 (100.0%)** | ✅ PASS |
-| **Max Detection Delay** | <60s | **<1.24s (Avg 0.51s)** | ✅ PASS |
-| **False Positive Rate (Baseline)** | <5% | **0.0%** | ✅ PASS |
-| **MITRE ATT&CK Coverage** | Complete | **100% (T1046, T1110, T1078)** | ✅ PASS |
-| **Inline IPS Packet Drop** | Verified | **Active & Enforced** | ✅ PASS |
+| **Reconnaissance Detection Rate (Nmap)** | 90%+ | **10 / 10 (100.0%)** |  PASS |
+| **Brute Force Detection Rate (Hydra)** | 90%+ | **5 / 5 (100.0%)** |  PASS |
+| **Max Detection Delay** | <60s | **<1.24s (Avg 0.51s)** |  PASS |
+| **False Positive Rate (Baseline)** | <5% | **0.0%** |  PASS |
+| **MITRE ATT&CK Coverage** | Complete | **100% (T1046, T1110, T1078)** |  PASS |
+| **Inline IPS Packet Drop** | Verified | **Active & Enforced** |  PASS |
 
 ---
 
