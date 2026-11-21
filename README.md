@@ -9,7 +9,7 @@ A complete, enterprise-grade network security lab and real-time defense simulati
 
 ---
 
-## 🚀 Live Working Real-Time Platform
+## Live Working Real-Time Platform
 
 The repository contains both the **enterprise architectural configurations** (GNS3, FortiGate, Suricata, Wazuh) and a **fully working real-time application** featuring:
 
@@ -31,7 +31,7 @@ The repository contains both the **enterprise architectural configurations** (GN
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### 1. Launch the Real-Time SOC Dashboard (Recommended)
 
@@ -72,7 +72,7 @@ Tested and verified via `simulate_cli.py` (see [attack-simulation/detection-metr
 
 ---
 
-## 📁 Project Directory Structure
+##  Project Directory Structure
 
 ```
 secure-network-monitoring-ips-lab/
@@ -142,7 +142,7 @@ secure-network-monitoring-ips-lab/
 
 ---
 
-## 🎯 Supported Attack Scenarios
+##  Supported Attack Scenarios
 
 ### Reconnaissance (Nmap)
 1. **Scenario 1**: SYN Stealth Scan (`-sS -T4 -p-`) → SID 1000001 (Wazuh 200001, MITRE T1046)
@@ -165,7 +165,7 @@ secure-network-monitoring-ips-lab/
 
 ---
 
-## 🛡️ Incident Response Runbook Integration
+## Incident Response Runbook Integration
 
 The platform provides a guided 4-phase incident response cycle:
 1. **Phase 1: Detection & Triage**: Automatic classification into Critical, High, Medium, and Low severity.
@@ -175,6 +175,6 @@ The platform provides a guided 4-phase incident response cycle:
 
 ---
 
-## 🔒 Safety & Ethics
+## Safety & Ethics
 
 This lab is strictly intended for **authorized, controlled, educational, and simulation use**. All synthetic traffic and attacks run locally within the isolated lab environment.
