@@ -57,7 +57,7 @@ python tests/test_core.py
 
 ---
 
-## 📊 Measured Benchmark Performance
+##  Measured Benchmark Performance
 
 Tested and verified via `simulate_cli.py` (see [attack-simulation/detection-metrics-live.md](attack-simulation/detection-metrics-live.md)):
 
